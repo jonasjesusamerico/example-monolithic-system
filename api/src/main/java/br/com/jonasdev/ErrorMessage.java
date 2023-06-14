@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 
-/**
- * A message containing more info why an operation failed.
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
