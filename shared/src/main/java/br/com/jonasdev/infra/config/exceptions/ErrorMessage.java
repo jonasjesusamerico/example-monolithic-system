@@ -1,5 +1,7 @@
-package br.com.jonasdev;
+package br.com.jonasdev.infra.config.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,7 +16,8 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ErrorMessage {
+@JsonInclude(Include.NON_NULL)
+class ErrorMessage {
 
     @JsonProperty("timestamp")
     @NotNull

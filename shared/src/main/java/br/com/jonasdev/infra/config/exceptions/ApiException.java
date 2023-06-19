@@ -1,4 +1,4 @@
-package br.com.jonasdev;
+package br.com.jonasdev.infra.config.exceptions;
 
 import org.springframework.http.HttpStatus;
 
