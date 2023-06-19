@@ -1,5 +1,6 @@
-package br.com.jonasdev;
+package br.com.jonasdev.controller.teste;
 
+import br.com.jonasdev.infra.config.exceptions.NotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

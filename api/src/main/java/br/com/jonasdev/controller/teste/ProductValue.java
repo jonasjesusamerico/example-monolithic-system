@@ -1,4 +1,4 @@
-package br.com.jonasdev;
+package br.com.jonasdev.controller.teste;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
