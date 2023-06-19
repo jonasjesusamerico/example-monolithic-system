@@ -1,7 +1,6 @@
 package br.com.jonasdev.usecase;
 
 import br.com.jonasdev.domain.Lancamento;
-import br.com.jonasdev.facade.AddProductFacadeInputDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,7 +18,7 @@ class LancamentoUseCase implements ILancamentoUseCase{
         this.findAll = findAll;
     }
 
-    public Lancamento add(AddProductFacadeInputDto inputDto) {
+    public Lancamento add(Lancamento inputDto) {
         return add.execute(inputDto);
     }
 

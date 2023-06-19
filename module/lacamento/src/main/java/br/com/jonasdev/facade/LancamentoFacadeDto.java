@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Builder
 @Getter
-public class AddProductFacadeInputDto {
+public class LancamentoFacadeDto {
 
     private LocalDate data;
 

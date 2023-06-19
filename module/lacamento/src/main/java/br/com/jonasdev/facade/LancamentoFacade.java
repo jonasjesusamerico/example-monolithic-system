@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 class LancamentoFacade implements ILancamentoFacade {
@@ -20,22 +21,26 @@ class LancamentoFacade implements ILancamentoFacade {
     }
 
     @Override
-    public Lancamento add(AddProductFacadeInputDto input) {
-        System.out.println("Entrei dentro do facede");
-        return useCase.add(input);
+    public LancamentoFacadeDto add(LancamentoFacadeDto inputDto) {
+        Lancamento lancamento = LancamentoConversor.domainToDto(inputDto);
+        Lancamento lancamentoSaved = useCase.add(lancamento);
+        return LancamentoConversor.dtoToDomain(lancamentoSaved);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Lancamento findById(Long id) {
+    public LancamentoFacadeDto findById(Long id) {
         return Optional.ofNullable(useCase.findById(id))
                 .filter(t -> Objects.nonNull(t.getId()))
+                .map(LancamentoConversor::dtoToDomain)
                 .orElseThrow(() -> new EntityNotFoundException("Lançamento " + id + " not found"));
     }
 
     @Override
-    public List<Lancamento> findAll() {
-        return useCase.findAll();
+    public List<LancamentoFacadeDto> findAll() {
+        return useCase.findAll().stream()
+                .map(LancamentoConversor::dtoToDomain)
+                .collect(Collectors.toList());
     }
 
 }

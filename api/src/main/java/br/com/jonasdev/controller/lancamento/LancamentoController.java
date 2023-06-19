@@ -1,9 +1,8 @@
 package br.com.jonasdev.controller.lancamento;
 
-import br.com.jonasdev.infra.config.exceptions.NotFoundException;
-import br.com.jonasdev.domain.Lancamento;
-import br.com.jonasdev.facade.AddProductFacadeInputDto;
 import br.com.jonasdev.facade.ILancamentoFacade;
+import br.com.jonasdev.facade.LancamentoFacadeDto;
+import br.com.jonasdev.infra.config.exceptions.NotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,14 +22,14 @@ public class LancamentoController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Lancamento>> getAll() {
+    public ResponseEntity<List<LancamentoFacadeDto>> getAll() {
         return new ResponseEntity<>(facade.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Lancamento> findById(@PathVariable("id") Long id) {
+    public ResponseEntity<LancamentoFacadeDto> findById(@PathVariable("id") Long id) {
         try {
-            Lancamento lancamento = facade.findById(id);
+            LancamentoFacadeDto lancamento = facade.findById(id);
             return new ResponseEntity<>(lancamento, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             throw new NotFoundException(e.getMessage());
@@ -38,10 +37,7 @@ public class LancamentoController {
     }
 
     @PostMapping()
-    public ResponseEntity<Lancamento> post(@Valid @RequestBody AddProductFacadeInputDto req) {
-
-        Lancamento lancamento = facade.add(req);
-
-        return new ResponseEntity<>(lancamento, HttpStatus.OK);
+    public ResponseEntity<LancamentoFacadeDto> post(@Valid @RequestBody LancamentoFacadeDto req) {
+        return new ResponseEntity<>(facade.add(req), HttpStatus.OK);
     }
 }
