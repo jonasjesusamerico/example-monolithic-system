@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ILancamentoUseCase {
 
-    public Lancamento add(Lancamento inputDto);
+    public Lancamento save(Lancamento inputDto);
 
     public Lancamento findById(Long id);
 

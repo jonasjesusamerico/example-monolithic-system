@@ -38,6 +38,6 @@ public class LancamentoController {
 
     @PostMapping()
     public ResponseEntity<LancamentoFacadeDto> post(@Valid @RequestBody LancamentoFacadeDto req) {
-        return new ResponseEntity<>(facade.add(req), HttpStatus.OK);
+        return new ResponseEntity<>(facade.save(req), HttpStatus.OK);
     }
 }

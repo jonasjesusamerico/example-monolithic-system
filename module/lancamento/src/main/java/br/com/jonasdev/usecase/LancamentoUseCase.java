@@ -18,7 +18,7 @@ class LancamentoUseCase implements ILancamentoUseCase{
         this.findAll = findAll;
     }
 
-    public Lancamento add(Lancamento inputDto) {
+    public Lancamento save(Lancamento inputDto) {
         return add.execute(inputDto);
     }
 

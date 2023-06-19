@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ILancamentoFacade {
 
-    LancamentoFacadeDto add(LancamentoFacadeDto input);
+    LancamentoFacadeDto save(LancamentoFacadeDto input);
 
     LancamentoFacadeDto findById(Long id);
 

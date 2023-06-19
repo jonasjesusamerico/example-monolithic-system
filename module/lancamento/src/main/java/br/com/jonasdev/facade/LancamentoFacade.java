@@ -21,9 +21,9 @@ class LancamentoFacade implements ILancamentoFacade {
     }
 
     @Override
-    public LancamentoFacadeDto add(LancamentoFacadeDto inputDto) {
+    public LancamentoFacadeDto save(LancamentoFacadeDto inputDto) {
         Lancamento lancamento = LancamentoConversor.domainToDto(inputDto);
-        Lancamento lancamentoSaved = useCase.add(lancamento);
+        Lancamento lancamentoSaved = useCase.save(lancamento);
         return LancamentoConversor.dtoToDomain(lancamentoSaved);
     }
 

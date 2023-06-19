@@ -14,6 +14,6 @@ class AddLancamentoUseCase {
     }
 
     public Lancamento execute(Lancamento inputDto) {
-        return this.lancamentoRepository.add(inputDto);
+        return this.lancamentoRepository.save(inputDto);
     }
 }

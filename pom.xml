@@ -19,7 +19,7 @@
     <modules>
         <module>shared</module>
         <module>api</module>
-        <module>module/lacamento</module>
+        <module>module/lancamento</module>
     </modules>
 
     <properties>

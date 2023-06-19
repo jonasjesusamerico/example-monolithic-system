@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LancamentoGateway {
 
-    Lancamento add(final Lancamento lancamento);
+    Lancamento save(final Lancamento lancamento);
 
     Lancamento find(final Long id);
 

@@ -37,7 +37,7 @@ class LancamentoRepository implements LancamentoGateway {
     }
 
     @Override
-    public Lancamento add(Lancamento input) {
+    public Lancamento save(Lancamento input) {
         LancamentoModel model = LancamentoModel.builder()
                 .data(input.getData())
                 .descricao(input.getDescricao())
