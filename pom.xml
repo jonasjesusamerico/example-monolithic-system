@@ -19,7 +19,7 @@
     <modules>
         <module>shared</module>
         <module>api</module>
-        <module>module/lancamento</module>
+        <module>module/contasmensal</module>
     </modules>
 
     <properties>

@@ -1,7 +1,7 @@
 package br.com.jonasdev.facade;
 
 import br.com.jonasdev.domain.Lancamento;
-import br.com.jonasdev.usecase.ILancamentoUseCase;
+import br.com.jonasdev.usecase.LancamentoUseCase;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +12,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-class LancamentoFacade implements ILancamentoFacade {
+class LancamentoFacadeImpl implements LancamentoFacade {
 
-    private final ILancamentoUseCase useCase;
+    private final LancamentoUseCase useCase;
 
-    public LancamentoFacade(ILancamentoUseCase useCase) {
+    public LancamentoFacadeImpl(LancamentoUseCase useCase) {
         this.useCase = useCase;
     }
 

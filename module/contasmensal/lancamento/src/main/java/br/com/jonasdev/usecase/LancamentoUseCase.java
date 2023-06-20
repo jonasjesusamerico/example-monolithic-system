@@ -4,7 +4,7 @@ import br.com.jonasdev.domain.Lancamento;
 
 import java.util.List;
 
-public interface ILancamentoUseCase {
+public interface LancamentoUseCase {
 
     public Lancamento save(Lancamento inputDto);
 

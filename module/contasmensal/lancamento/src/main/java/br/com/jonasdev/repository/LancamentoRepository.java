@@ -2,9 +2,7 @@ package br.com.jonasdev.repository;
 
 import br.com.jonasdev.domain.Lancamento;
 import br.com.jonasdev.gateway.LancamentoGateway;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package br.com.jonasdev.controller.lancamento;
 
-import br.com.jonasdev.facade.ILancamentoFacade;
+import br.com.jonasdev.facade.LancamentoFacade;
 import br.com.jonasdev.facade.LancamentoFacadeDto;
 import br.com.jonasdev.infra.config.exceptions.NotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("/api/lancamento")
 public class LancamentoController {
 
-    private final ILancamentoFacade facade;
+    private final LancamentoFacade facade;
 
-    public LancamentoController(ILancamentoFacade facade) {
+    public LancamentoController(LancamentoFacade facade) {
         this.facade = facade;
     }
 

@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-class LancamentoUseCase implements ILancamentoUseCase{
+class LancamentoUseCaseImpl implements LancamentoUseCase {
 
     private final AddLancamentoUseCase add;
     private final FindLancamentoUseCase find;
     private final FindAllLancamentoUseCase findAll;
 
-    public LancamentoUseCase(AddLancamentoUseCase add, FindLancamentoUseCase find, FindAllLancamentoUseCase findAll) {
+    public LancamentoUseCaseImpl(AddLancamentoUseCase add, FindLancamentoUseCase find, FindAllLancamentoUseCase findAll) {
         this.add = add;
         this.find = find;
         this.findAll = findAll;

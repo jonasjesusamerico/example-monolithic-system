@@ -2,7 +2,7 @@ package br.com.jonasdev.facade;
 
 import java.util.List;
 
-public interface ILancamentoFacade {
+public interface LancamentoFacade {
 
     LancamentoFacadeDto save(LancamentoFacadeDto input);
 
