@@ -18,6 +18,7 @@ class LancamentoConversor {
 
     public static LancamentoFacadeDto dtoToDomain(Lancamento t) {
         return LancamentoFacadeDto.builder()
+                .id(t.getId())
                 .data(t.getData())
                 .descricao(t.getDescricao())
                 .pessoaDescricao(t.getPessoaDescricao())

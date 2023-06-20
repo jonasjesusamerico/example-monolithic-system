@@ -3,6 +3,9 @@ package br.com.jonasdev.facade;
 import br.com.jonasdev.domain.Lancamento;
 import br.com.jonasdev.usecase.LancamentoUseCase;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +31,16 @@ class LancamentoFacadeImpl implements LancamentoFacade {
     }
 
     @Override
+    public LancamentoFacadeDto update(LancamentoFacadeDto input) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return false;
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public LancamentoFacadeDto findById(Long id) {
         return Optional.ofNullable(useCase.findById(id))
@@ -37,10 +50,16 @@ class LancamentoFacadeImpl implements LancamentoFacade {
     }
 
     @Override
-    public List<LancamentoFacadeDto> findAll() {
-        return useCase.findAll().stream()
+    public Page<LancamentoFacadeDto> findAllPageable(Pageable page) {
+        Page<Lancamento> lancamentoPage = useCase.findAllPageable(page);
+
+        List<LancamentoFacadeDto> collect = lancamentoPage.stream()
                 .map(LancamentoConversor::dtoToDomain)
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(collect, page, lancamentoPage.getTotalElements());
     }
+
+
 
 }

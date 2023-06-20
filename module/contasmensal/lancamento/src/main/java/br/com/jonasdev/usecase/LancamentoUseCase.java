@@ -1,8 +1,8 @@
 package br.com.jonasdev.usecase;
 
 import br.com.jonasdev.domain.Lancamento;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface LancamentoUseCase {
 
@@ -10,6 +10,6 @@ public interface LancamentoUseCase {
 
     public Lancamento findById(Long id);
 
-    public List<Lancamento> findAll();
+    public Page<Lancamento> findAllPageable(Pageable page);
 
 }

@@ -2,6 +2,8 @@ package br.com.jonasdev.usecase;
 
 import br.com.jonasdev.domain.Lancamento;
 import br.com.jonasdev.gateway.LancamentoGateway;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,7 @@ class FindAllLancamentoUseCase {
         this.lancamentoRepository = lancamentoRepository;
     }
 
-    public List<Lancamento> execute() {
-        return lancamentoRepository.findAll();
+    public Page<Lancamento> execute(Pageable page) {
+        return lancamentoRepository.findAll(page);
     }
 }

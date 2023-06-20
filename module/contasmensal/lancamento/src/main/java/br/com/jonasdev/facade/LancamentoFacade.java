@@ -1,12 +1,18 @@
 package br.com.jonasdev.facade;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface LancamentoFacade {
 
-    LancamentoFacadeDto save(LancamentoFacadeDto input);
-
     LancamentoFacadeDto findById(Long id);
 
-    List<LancamentoFacadeDto> findAll();
+    Page<LancamentoFacadeDto> findAllPageable(Pageable page);
+
+    LancamentoFacadeDto save(LancamentoFacadeDto input);
+
+    LancamentoFacadeDto update(LancamentoFacadeDto input);
+
+    boolean delete(Long id);
+
 }

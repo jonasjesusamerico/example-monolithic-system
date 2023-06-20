@@ -10,6 +10,11 @@
     </parent>
 
     <artifactId>contasmensal</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>lancamento</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

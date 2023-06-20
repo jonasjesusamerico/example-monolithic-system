@@ -5,11 +5,11 @@ import br.com.jonasdev.facade.LancamentoFacadeDto;
 import br.com.jonasdev.infra.config.exceptions.NotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/lancamento")
@@ -22,8 +22,9 @@ public class LancamentoController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<LancamentoFacadeDto>> getAll() {
-        return new ResponseEntity<>(facade.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<LancamentoFacadeDto>> findAllPageable(Pageable pageable) {
+        Page<LancamentoFacadeDto> allPageable = facade.findAllPageable(pageable);
+        return new ResponseEntity<>(allPageable, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")

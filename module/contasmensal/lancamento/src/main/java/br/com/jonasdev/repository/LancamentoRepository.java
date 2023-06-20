@@ -2,6 +2,9 @@ package br.com.jonasdev.repository;
 
 import br.com.jonasdev.domain.Lancamento;
 import br.com.jonasdev.gateway.LancamentoGateway;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,10 +23,13 @@ class LancamentoRepository implements LancamentoGateway {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Lancamento> findAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false)
+    public Page<Lancamento> findAll(Pageable page) {
+        Page<LancamentoModel> all = repository.findAll(page);
+        List<Lancamento> collect = StreamSupport.stream(all.spliterator(), false)
                 .map(Lancamento::toModel)
                 .collect(Collectors.toList());
+
+        return new PageImpl<>(collect, page, all.getTotalElements());
     }
 
     @Override

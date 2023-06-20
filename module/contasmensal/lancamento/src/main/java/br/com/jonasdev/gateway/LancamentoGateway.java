@@ -1,8 +1,9 @@
 package br.com.jonasdev.gateway;
 
 import br.com.jonasdev.domain.Lancamento;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 public interface LancamentoGateway {
 
@@ -10,5 +11,5 @@ public interface LancamentoGateway {
 
     Lancamento find(final Long id);
 
-    List<Lancamento> findAll();
+    Page<Lancamento> findAll(Pageable page);
 }

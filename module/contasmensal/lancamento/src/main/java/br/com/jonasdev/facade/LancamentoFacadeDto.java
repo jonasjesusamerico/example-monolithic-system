@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @Getter
 public class LancamentoFacadeDto {
 
+    private Long id;
+
     private LocalDate data;
 
     private String descricao;
