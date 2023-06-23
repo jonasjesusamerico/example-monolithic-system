@@ -5,23 +5,29 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 class LancamentoUseCaseImpl implements LancamentoUseCase {
 
-    private final AddLancamentoUseCase add;
+    private final SaveLancamentoUseCase save;
     private final FindLancamentoUseCase find;
     private final FindAllLancamentoUseCase findAll;
+    private final DeleteLancamentoUseCase delete;
+    private final UpdateLancamentoUseCase update;
 
-    public LancamentoUseCaseImpl(AddLancamentoUseCase add, FindLancamentoUseCase find, FindAllLancamentoUseCase findAll) {
-        this.add = add;
+    public LancamentoUseCaseImpl(SaveLancamentoUseCase save,
+                                 FindLancamentoUseCase find,
+                                 FindAllLancamentoUseCase findAll,
+                                 DeleteLancamentoUseCase delete,
+                                 UpdateLancamentoUseCase update) {
+        this.save = save;
         this.find = find;
         this.findAll = findAll;
+        this.delete = delete;
+        this.update = update;
     }
 
     public Lancamento save(Lancamento inputDto) {
-        return add.execute(inputDto);
+        return save.execute(inputDto);
     }
 
     @Override
@@ -31,7 +37,17 @@ class LancamentoUseCaseImpl implements LancamentoUseCase {
 
     @Override
     public Page<Lancamento> findAllPageable(Pageable page) {
-        return findAll.execute(page);
+        return findAll.executePageable(page);
+    }
+
+    @Override
+    public void delete(Long id) {
+        delete.execute(id);
+    }
+
+    @Override
+    public Lancamento update(Lancamento dto) {
+        return update.execute(dto);
     }
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -23,21 +24,33 @@ class LancamentoRepository implements LancamentoGateway {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Lancamento> findAll(Pageable page) {
+    public Page<Lancamento> findAllPageable(Pageable page) {
         Page<LancamentoModel> all = repository.findAll(page);
         List<Lancamento> collect = StreamSupport.stream(all.spliterator(), false)
-                .map(Lancamento::toModel)
+                .map(Lancamento::byModel)
                 .collect(Collectors.toList());
 
         return new PageImpl<>(collect, page, all.getTotalElements());
     }
 
     @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public List<Lancamento> findAll() {
+        return repository.findAll().stream()
+                .map(Lancamento::byModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Lancamento find(Long id) {
         return repository.findById(id)
-                .map(Lancamento::toModel)
-                .orElse(Lancamento.toModel());
+                .map(Lancamento::byModel)
+                .orElse(Lancamento.New());
     }
 
     @Override
@@ -51,11 +64,28 @@ class LancamentoRepository implements LancamentoGateway {
                 .valor(input.getValor())
                 .status(input.getStatus())
                 .build();
+        model.setId(input.getId());
 
-        return Lancamento.toModel(repository.save(model));
+        return Lancamento.byModel(repository.save(model));
     }
 
+    @Override
+    public Lancamento update(Lancamento lancamento) {
+        LancamentoModel model = repository.findById(lancamento.getId()).orElse(null);
+        if (Objects.isNull(model)) {
+            return Lancamento.New();
+        }
 
+        model.setData(lancamento.getData());
+        model.setDescricao(lancamento.getDescricao());
+        model.setPessoaDescricao(lancamento.getPessoaDescricao());
+        model.setModalidade(lancamento.getModalidade());
+        model.setFormaPagamento(lancamento.getFormaPagamento());
+        model.setValor(lancamento.getValor());
+        model.setStatus(lancamento.getStatus());
+
+        return Lancamento.byModel(repository.save(model));
+    }
 
 
 }

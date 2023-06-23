@@ -4,8 +4,8 @@ import br.com.jonasdev.domain.Lancamento;
 
 class LancamentoConversor {
 
-    public static Lancamento domainToDto(LancamentoFacadeDto dto) {
-        return Lancamento.builder()
+    public static Lancamento dtoToDomain(LancamentoFacadeDto dto) {
+        Lancamento lancamento = Lancamento.builder()
                 .data(dto.getData())
                 .descricao(dto.getDescricao())
                 .pessoaDescricao(dto.getPessoaDescricao())
@@ -14,9 +14,11 @@ class LancamentoConversor {
                 .valor(dto.getValor())
                 .status(dto.getStatus())
                 .build();
+        lancamento.setId(dto.getId());
+        return lancamento;
     }
 
-    public static LancamentoFacadeDto dtoToDomain(Lancamento t) {
+    public static LancamentoFacadeDto domainToDto(Lancamento t) {
         return LancamentoFacadeDto.builder()
                 .id(t.getId())
                 .data(t.getData())
@@ -29,4 +31,16 @@ class LancamentoConversor {
                 .build();
     }
 
+    public static LancamentoFacadeDto update(LancamentoFacadeDto origem, LancamentoFacadeDto t) {
+        return origem.toBuilder()
+                .id(t.getId())
+                .data(t.getData())
+                .descricao(t.getDescricao())
+                .pessoaDescricao(t.getPessoaDescricao())
+                .modalidade(t.getModalidade())
+                .formaPagamento(t.getFormaPagamento())
+                .valor(t.getValor())
+                .status(t.getStatus())
+                .build();
+    }
 }

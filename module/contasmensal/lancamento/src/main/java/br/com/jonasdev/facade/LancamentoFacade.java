@@ -13,6 +13,6 @@ public interface LancamentoFacade {
 
     LancamentoFacadeDto update(LancamentoFacadeDto input);
 
-    boolean delete(Long id);
+    void delete(Long id);
 
 }

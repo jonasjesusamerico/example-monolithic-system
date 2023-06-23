@@ -17,7 +17,11 @@ class FindAllLancamentoUseCase {
         this.lancamentoRepository = lancamentoRepository;
     }
 
-    public Page<Lancamento> execute(Pageable page) {
-        return lancamentoRepository.findAll(page);
+    public Page<Lancamento> executePageable(Pageable page) {
+        return lancamentoRepository.findAllPageable(page);
+    }
+
+    public List<Lancamento> execute() {
+        return lancamentoRepository.findAll();
     }
 }

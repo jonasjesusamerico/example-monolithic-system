@@ -41,7 +41,11 @@ public class Lancamento extends BaseEntity implements AggregateRoot {
         this.status = status;
     }
 
-    public static Lancamento toModel(LancamentoModel lancamentoModel) {
+    public static Lancamento New() {
+        return new Lancamento();
+    }
+
+    public static Lancamento byModel(LancamentoModel lancamentoModel) {
         return new Lancamento(
                 lancamentoModel.getId(),
                 lancamentoModel.getData(),
@@ -54,7 +58,7 @@ public class Lancamento extends BaseEntity implements AggregateRoot {
         );
     }
 
-    public static Lancamento toModel() {
+    public static Lancamento byModel() {
         return new Lancamento();
     }
 }

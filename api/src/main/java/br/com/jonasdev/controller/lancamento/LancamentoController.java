@@ -41,4 +41,27 @@ public class LancamentoController {
     public ResponseEntity<LancamentoFacadeDto> post(@Valid @RequestBody LancamentoFacadeDto req) {
         return new ResponseEntity<>(facade.save(req), HttpStatus.OK);
     }
+
+    @PutMapping()
+    public ResponseEntity<LancamentoFacadeDto> update(@Valid @RequestBody LancamentoFacadeDto req) {
+        try {
+            return new ResponseEntity<>(facade.update(req), HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
+
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> delete(Long id) {
+        try {
+            facade.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (EntityNotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
+
+    }
+
+
 }

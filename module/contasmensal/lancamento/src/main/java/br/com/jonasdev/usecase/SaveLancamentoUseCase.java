@@ -5,11 +5,11 @@ import br.com.jonasdev.gateway.LancamentoGateway;
 import org.springframework.stereotype.Service;
 
 @Service
-class AddLancamentoUseCase {
+class SaveLancamentoUseCase {
 
     private final LancamentoGateway lancamentoRepository;
 
-    public AddLancamentoUseCase(LancamentoGateway lancamentoRepository) {
+    public SaveLancamentoUseCase(LancamentoGateway lancamentoRepository) {
         this.lancamentoRepository = lancamentoRepository;
     }
 

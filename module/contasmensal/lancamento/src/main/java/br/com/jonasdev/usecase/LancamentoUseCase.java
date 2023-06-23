@@ -12,4 +12,7 @@ public interface LancamentoUseCase {
 
     public Page<Lancamento> findAllPageable(Pageable page);
 
+    void delete(Long id);
+
+    Lancamento update(Lancamento update);
 }
