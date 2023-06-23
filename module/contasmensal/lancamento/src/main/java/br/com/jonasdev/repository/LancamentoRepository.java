@@ -1,6 +1,7 @@
 package br.com.jonasdev.repository;
 
 import br.com.jonasdev.domain.Lancamento;
+import br.com.jonasdev.domain.LancamentoFactory;
 import br.com.jonasdev.gateway.LancamentoGateway;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -27,7 +28,7 @@ class LancamentoRepository implements LancamentoGateway {
     public Page<Lancamento> findAllPageable(Pageable page) {
         Page<LancamentoModel> all = repository.findAll(page);
         List<Lancamento> collect = StreamSupport.stream(all.spliterator(), false)
-                .map(Lancamento::byModel)
+                .map(LancamentoFactory::byModel)
                 .collect(Collectors.toList());
 
         return new PageImpl<>(collect, page, all.getTotalElements());
@@ -41,7 +42,7 @@ class LancamentoRepository implements LancamentoGateway {
     @Override
     public List<Lancamento> findAll() {
         return repository.findAll().stream()
-                .map(Lancamento::byModel)
+                .map(LancamentoFactory::byModel)
                 .collect(Collectors.toList());
     }
 
@@ -49,8 +50,8 @@ class LancamentoRepository implements LancamentoGateway {
     @Transactional(readOnly = true)
     public Lancamento find(Long id) {
         return repository.findById(id)
-                .map(Lancamento::byModel)
-                .orElse(Lancamento.New());
+                .map(LancamentoFactory::byModel)
+                .orElse(LancamentoFactory.New());
     }
 
     @Override
@@ -66,26 +67,26 @@ class LancamentoRepository implements LancamentoGateway {
                 .build();
         model.setId(input.getId());
 
-        return Lancamento.byModel(repository.save(model));
+        return LancamentoFactory.byModel(repository.save(model));
     }
 
     @Override
     public Lancamento update(Lancamento lancamento) {
         LancamentoModel model = repository.findById(lancamento.getId()).orElse(null);
         if (Objects.isNull(model)) {
-            return Lancamento.New();
+            return LancamentoFactory.New();
         }
+        LancamentoModel updatedModel = model.toBuilder()
+                .data(lancamento.getData())
+                .descricao(lancamento.getDescricao())
+                .pessoaDescricao(lancamento.getPessoaDescricao())
+                .modalidade(lancamento.getModalidade())
+                .formaPagamento(lancamento.getFormaPagamento())
+                .valor(lancamento.getValor())
+                .status(lancamento.getStatus())
+                .build();
 
-        model.setData(lancamento.getData());
-        model.setDescricao(lancamento.getDescricao());
-        model.setPessoaDescricao(lancamento.getPessoaDescricao());
-        model.setModalidade(lancamento.getModalidade());
-        model.setFormaPagamento(lancamento.getFormaPagamento());
-        model.setValor(lancamento.getValor());
-        model.setStatus(lancamento.getStatus());
-
-        return Lancamento.byModel(repository.save(model));
+        return LancamentoFactory.byModel(repository.save(updatedModel));
     }
-
 
 }

@@ -15,9 +15,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(toBuilder = true)
 @ToString
-public class LancamentoModel extends AbstractBaseEntity {
+class LancamentoModel extends AbstractBaseEntity implements ILancamentoModel {
 
 
     @Column(name = "DATA")
@@ -42,4 +41,24 @@ public class LancamentoModel extends AbstractBaseEntity {
     private String status;
 
 
+    @Builder(toBuilder = true)
+    public LancamentoModel(Long id,
+                           Integer version,
+                           String tenantId,
+                           LocalDate data,
+                           String descricao,
+                           String pessoaDescricao,
+                           String modalidade,
+                           String formaPagamento,
+                           BigDecimal valor,
+                           String status) {
+        super(id, version, tenantId);
+        this.data = data;
+        this.descricao = descricao;
+        this.pessoaDescricao = pessoaDescricao;
+        this.modalidade = modalidade;
+        this.formaPagamento = formaPagamento;
+        this.valor = valor;
+        this.status = status;
+    }
 }

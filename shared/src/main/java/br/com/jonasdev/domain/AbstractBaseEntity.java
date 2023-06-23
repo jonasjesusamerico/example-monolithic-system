@@ -19,14 +19,14 @@ public abstract class AbstractBaseEntity implements Serializable {
     @Id
     @Column(name = "id", unique = true, nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Version
     @Column(name = "version", nullable = false, columnDefinition = "int default 0")
-    private Integer version;
+    protected Integer version;
 
     @Column(name = "tenant_id")
     @TenantId
-    private String tenantId;
+    protected String tenantId;
 
 }

@@ -1,11 +1,10 @@
-package br.com.jonasdev.domain;
+package br.com.jonasdev.repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public interface Lancamento extends AggregateRoot {
 
-    Long getId();
+public interface ILancamentoModel {
 
     LocalDate getData();
 
@@ -20,5 +19,11 @@ public interface Lancamento extends AggregateRoot {
     BigDecimal getValor();
 
     String getStatus();
+
+    Long getId();
+
+    Integer getVersion();
+
+    String getTenantId();
 
 }
